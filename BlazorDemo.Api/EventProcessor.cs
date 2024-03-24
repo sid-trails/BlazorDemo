@@ -32,7 +32,7 @@ public class EventProcessor: BackgroundService
    
    // ...
    
-   const string connectionString = "Endpoint=sb://task-service.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hlysiD2Hfkt9yZW0Y9WqHWI5VnrAF88Je+AEhCoOHGo=";
+  
    const string eventHubName = "<your_event_hub_name>";
    const string consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
    var storageConnectionString = "<your_storage_connection_string>";
