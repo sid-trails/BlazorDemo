@@ -1,4 +1,5 @@
 using BlazorDemo.Api;
+using ServiceReference;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
 builder.Services.AddHostedService<EventProcessor>();
+builder.Services.AddSingleton<ITaskService, TaskServiceClient>();
 builder.Services.AddCors();
 
 var app = builder.Build();

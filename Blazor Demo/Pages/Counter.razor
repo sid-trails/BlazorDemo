@@ -1,19 +1,79 @@
 ﻿@page "/counter"
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Submissions</PageTitle>
 
-<h1>Counter</h1>
+<h1>Submissions</h1>
 
-<p role="status">Current count: @currentCount</p>
+<form>
+    <div class="form-group">
+        <label for="userName">Submission Name:</label>
+        <input type="text" class="form-control" id="userName" placeholder="Enter your name" @bind="@submissionName">
+    </div>
+    <div class="form-group">
+        <label for="location">Type 1:</label>
+        <input type="text" class="form-control" id="type1" placeholder="Enter your first number" @bind="@type1">
+    </div>
+    <div class="form-group">
+            <label for="location">Type 2:</label>
+            <input type="text" class="form-control" id="type2" placeholder="Enter your secondnumber" @bind="@type2">
+        </div>
+    <button type="button" class="btn btn-primary" @onclick="IncrementCount">Submit</button>
+</form>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@if (hasSubmitted)
+{
+    <p>Submission was successful</p>
+}
 
 @code {
     private int currentCount = 0;
-
-    private void IncrementCount()
+    private string submissionName = string.Empty;
+    private int type1 = 0;
+    private int type2 = 0;
+    private bool hasSubmitted = false;
+    private async Task IncrementCount()
     {
-        currentCount++;
+        var json = System.Text.Json.JsonSerializer.Serialize(new RequestSubmisson
+        {
+            SubmissionName = submissionName,
+            Type1 = type1,
+            Type2 = type2
+        });
+
+        // Create a new HttpClient
+        using var httpClient = new HttpClient();
+
+        // Set the base address of the HttpClient to the submission endpoint
+        httpClient.BaseAddress = new Uri("http://localhost:5209");
+
+        // Create a new StringContent with the JSON data
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+        // Send a POST request to the submission endpoint
+        var response = await httpClient.PostAsync("/api/submissions", content);
+
+        // Check if the request was successful
+        if (response.IsSuccessStatusCode)
+        {
+           hasSubmitted = true;
+        }
+        else
+        {
+            // Submission failed
+            // You can handle the failure scenario here
+        }
+    }
+    
+   
+    
+    
+    
+    public class RequestSubmisson
+    {
+        public string SubmissionName { get; set; }
+        public int  Type1 { get; set; }
+        public int Type2 { get; set; }
+    
     }
 
 }
