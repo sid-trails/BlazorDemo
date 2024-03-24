@@ -1,0 +1,65 @@
+# .NET Core / .NET Standard
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.exe.config
+*.deps.json
+*.runtimeconfig.json
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Oo]bj/
+[Bb]in/
+[Nn]ode_modules/
+[Ll]og/
+
+# Visual Studio files
+.vs/
+*.vscode/
+*.sln
+*.suo
+*.user
+*.userprefs
+*.proj
+*.xproj
+*.sw*
+*.sln.ide
+*.idea/
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NuGet
+packages/
+*.nupkg
+*.paket.*
+*.paket.lock
+*.paket.references
+paket-files/
+
+# StyleCop
+StyleCopReport.xml
+
+# Resharper
+_ReSharper*/
+*.resharper*
+*.DotSettings.user
+
+# Others
+*.Cache
+ClientBin/
+[Ss]tyle[Cc]op.*
+~$*
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+node_modules/
+npm-debug.log
