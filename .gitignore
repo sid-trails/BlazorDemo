@@ -22,7 +22,6 @@ x86/
 # Visual Studio files
 .vs/
 *.vscode/
-*.sln
 *.suo
 *.user
 *.userprefs
